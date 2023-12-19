@@ -47,10 +47,12 @@ int tree_push(tree_t * tree, int value) {
     node_t * target_node = traverse(tree->root, value);
     if (!target_node) handle("traverse: not found");
     
-    if (value < target_node->value)
+    if (value < target_node->value) {
         target_node->left = new_node;
-    else 
+    }
+    else  {
         target_node->right = new_node;
+    }
 
     new_node->parent = target_node;
 
@@ -61,13 +63,13 @@ void tree_print_helper(node_t * root, int offset) {
     if (!root)
         return;
 
-    tree_print_helper(root->left, offset + 10);
+    tree_print_helper(root->right, offset + 10);
 
     for (int i = 0; i < offset; i++)
         printf(" ");
     printf("%d\n", root->value);
 
-    tree_print_helper(root->right, offset + 10);
+    tree_print_helper(root->left, offset + 10);
 }
 
 void tree_print(tree_t * tree) {
