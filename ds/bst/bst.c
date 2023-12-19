@@ -43,8 +43,8 @@ int tree_push(tree_t * tree, int value) {
     }
 
     node_t * new_node = node_make(value);
-    node_t * target_node = traverse(tree->root, value);
 
+    node_t * target_node = traverse(tree->root, value);
     if (!target_node) handle("traverse: not found");
     
     if (value < target_node->value)
