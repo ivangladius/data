@@ -1,6 +1,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "bst.h"
 
@@ -57,6 +58,26 @@ int tree_push(tree_t * tree, int value) {
     new_node->parent = target_node;
 
     return 0;
+}
+
+bool is_leaf(node_t * node) {
+  return (node->left == NULL && node->right == NULL);
+}
+
+bool has_left(node_t * node) {
+  return node->left != NULL;
+}
+
+bool has_right(node_t * node) {
+  return node->right != NULL;
+}
+
+bool has_parent(node_t * node) {
+  return node->parent != NULL;
+}
+
+int tree_delete_node(tree_t * tree, int value) {
+  // TODO: soon
 }
 
 void tree_print_helper(node_t * root, int offset) {
