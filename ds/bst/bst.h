@@ -3,6 +3,7 @@
 #define BST_HEADER
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct Node node_t;
 typedef struct Tree tree_t;
@@ -30,8 +31,10 @@ bool has_left(node_t * node);
 bool has_right(node_t * node);
 bool has_parent(node_t * node);
 int tree_delete_node(tree_t * tree, int value);
-node_t * succressor(node_t * node);
+node_t * successor(node_t * node);
 node_t * predecessor(node_t * node);
+node_t * min(tree_t *tree);
+node_t * max(tree_t *tree);
 
 void tree_print(tree_t * tree);
 

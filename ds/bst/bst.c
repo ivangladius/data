@@ -76,21 +76,57 @@ bool has_parent(node_t * node) {
   return node->parent != NULL;
 }
 
-int tree_delete_node(tree_t * tree, int value) {
-  // TODO: soon
+
+node_t * successor(node_t * node) {
+  // case 1: has right node
+  node_t * current = node;
+  while (current->right) {
+    current = current->right;
+    if (current->left)
+      return current->left;
+    return current;
+  }
+  // case 2: has no right subtree
+  if (!current->right)
+    return current->parent;
+
+  return NULL;
 }
+
+/* node_t * predecessor(node_t * node) { */
+/* } */
+
+
+node_t * min(tree_t *tree) {
+  node_t * current = tree->root;
+  for (; has_left(current); current = current->left);
+  return current;
+}
+
+node_t * max(tree_t *tree) {
+  node_t * current = tree->root;
+  for (; has_right(current); current = current->right);
+  return current;
+}
+
+
+/* int tree_delete_node(tree_t * tree, int value) { */
+/*   // TODO: soon */
+/* } */
+
+#define OFFSET_VALUE 10 
 
 void tree_print_helper(node_t * root, int offset) {
     if (!root)
         return;
 
-    tree_print_helper(root->right, offset + 10);
+    tree_print_helper(root->right, offset + OFFSET_VALUE);
 
     for (int i = 0; i < offset; i++)
         printf(" ");
     printf("%d\n", root->value);
 
-    tree_print_helper(root->left, offset + 10);
+    tree_print_helper(root->left, offset + OFFSET_VALUE);
 }
 
 void tree_print(tree_t * tree) {
